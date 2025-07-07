@@ -33,10 +33,10 @@ class Register extends Component
 
         Auth::login($user);
 
-        $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(route('home', absolute: false), navigate: true);
     }
     public function render()
     {
-        return view('livewire.auth.register')->layout('livewire.partials.layouts.auth',['title' => 'Register']);
+        return view('livewire.auth.register')->layout('livewire.partials.master',['title' => 'Register']);
     }
 }

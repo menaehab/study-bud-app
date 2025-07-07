@@ -42,7 +42,7 @@ class Login extends Component
         RateLimiter::clear($this->throttleKey());
         Session::regenerate();
 
-        $this->redirectIntended(default: route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(default: route('home', absolute: false), navigate: true);
     }
 
     /**
@@ -76,6 +76,6 @@ class Login extends Component
 
     public function render()
     {
-        return view('livewire.auth.login')->layout('livewire.partials.layouts.auth',['title' => 'Login']);
+        return view('livewire.auth.login')->layout('livewire.partials.master',['title' => 'Login']);
     }
 }
