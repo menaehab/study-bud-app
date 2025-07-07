@@ -1,6 +1,6 @@
 <?php
 
-use App\Livewire\HomePage;
+use App\Livewire\Home\HomePage;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
