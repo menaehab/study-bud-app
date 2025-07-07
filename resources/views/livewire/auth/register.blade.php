@@ -1,99 +1,72 @@
-<?php
+<main class="auth layout">
+    <div class="container">
+        <div class="layout__box">
+            <div class="layout__boxHeader">
+                <div class="layout__boxTitle">
+                    <h3>Sign up</h3>
+                </div>
+            </div>
+            <div class="layout__body">
+                <form class="form" wire:submit.prevent="register">
+                    <div class="form__group form__group">
+                        <label for="name">Full Name</label>
+                        <input wire:model.live.debounce.200ms="name" id="name" name="name" type="text"
+                            placeholder="e.g. Dennis Ivy" />
+                        @error('name')
+                            <p class="form__error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form__group form__group">
+                        <label for="email">Email</label>
+                        <input wire:model.live.debounce.200ms="email" id="email" name="email" type="email"
+                            placeholder="e.g. dennis_ivy@example.com" />
+                        @error('email')
+                            <p class="form__error">{{ $message }}</p>
+                        @enderror
+                        @error('password')
+                            <p class="form__error">{{ $message }}</p>
+                        @enderror
+                    </div>
+                    <div class="form__group">
+                        <label for="password">Password</label>
+                        <input wire:model.live.debounce.200ms="password" id="password" name="password" type="password"
+                            placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+                        @error('password')
+                            <p class="form__error">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Livewire\Attributes\Layout;
-use Livewire\Volt\Component;
+                    <div class="form__group">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input wire:model.live.debounce.200ms="password_confirmation" id="confirm_password"
+                            name="confirm_password" type="password"
+                            placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" />
+                        @error('password_confirmation')
+                            <p class="form__error">{{ $message }}</p>
+                        @enderror
+                    </div>
 
-new #[Layout('components.layouts.auth')] class extends Component {
-    public string $name = '';
-    public string $email = '';
-    public string $password = '';
-    public string $password_confirmation = '';
+                    <button class="btn btn--main" type="submit">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                            viewBox="0 0 32 32">
+                            <title>lock</title>
+                            <path
+                                d="M27 12h-1v-2c0-5.514-4.486-10-10-10s-10 4.486-10 10v2h-1c-0.553 0-1 0.447-1 1v18c0 0.553 0.447 1 1 1h22c0.553 0 1-0.447 1-1v-18c0-0.553-0.447-1-1-1zM8 10c0-4.411 3.589-8 8-8s8 3.589 8 8v2h-16v-2zM26 30h-20v-16h20v16z">
+                            </path>
+                            <path
+                                d="M15 21.694v4.306h2v-4.306c0.587-0.348 1-0.961 1-1.694 0-1.105-0.895-2-2-2s-2 0.895-2 2c0 0.732 0.413 1.345 1 1.694z">
+                            </path>
+                        </svg>
 
-    /**
-     * Handle an incoming registration request.
-     */
-    public function register(): void
-    {
-        $validated = $this->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::defaults()],
-        ]);
+                        Sign Up
+                    </button>
+                </form>
 
-        $validated['password'] = Hash::make($validated['password']);
-
-        event(new Registered(($user = User::create($validated))));
-
-        Auth::login($user);
-
-        $this->redirectIntended(route('dashboard', absolute: false), navigate: true);
-    }
-}; ?>
-
-<div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Create an account')" :description="__('Enter your details below to create your account')" />
-
-    <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
-
-    <form wire:submit="register" class="flex flex-col gap-6">
-        <!-- Name -->
-        <flux:input
-            wire:model="name"
-            :label="__('Name')"
-            type="text"
-            required
-            autofocus
-            autocomplete="name"
-            :placeholder="__('Full name')"
-        />
-
-        <!-- Email Address -->
-        <flux:input
-            wire:model="email"
-            :label="__('Email address')"
-            type="email"
-            required
-            autocomplete="email"
-            placeholder="email@example.com"
-        />
-
-        <!-- Password -->
-        <flux:input
-            wire:model="password"
-            :label="__('Password')"
-            type="password"
-            required
-            autocomplete="new-password"
-            :placeholder="__('Password')"
-            viewable
-        />
-
-        <!-- Confirm Password -->
-        <flux:input
-            wire:model="password_confirmation"
-            :label="__('Confirm password')"
-            type="password"
-            required
-            autocomplete="new-password"
-            :placeholder="__('Confirm password')"
-            viewable
-        />
-
-        <div class="flex items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
-                {{ __('Create account') }}
-            </flux:button>
+                <div class="auth__action">
+                    <p>Already have an account?</p>
+                    <a href="{{ route('login') }}" class="btn btn--link" wire:navigate>Log In</a>
+                </div>
+            </div>
         </div>
-    </form>
-
-    <div class="space-x-1 rtl:space-x-reverse text-center text-sm text-zinc-600 dark:text-zinc-400">
-        <span>{{ __('Already have an account?') }}</span>
-        <flux:link :href="route('login')" wire:navigate>{{ __('Log in') }}</flux:link>
     </div>
-</div>
+</main>
