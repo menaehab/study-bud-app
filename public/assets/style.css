@@ -179,10 +179,10 @@ a {
 }
 
 .avatar.avatar--medium:after {
-    width: 0.7rem;
-    height: 0.7rem;
-    bottom: 0px;
-    right: -6px;
+    width: 1.5rem;
+    height: 1.5rem;
+    bottom: -0.2rem;
+    right: -0.4rem;
 }
 
 .avatar.avatar--large img {
