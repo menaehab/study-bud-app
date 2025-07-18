@@ -64,6 +64,60 @@ a {
 }
 
 /*========== components ==========*/
+.pagination {
+    display: flex;
+    list-style: none;
+    gap: 0.8rem;
+    padding: 2rem 0;
+    justify-content: center;
+}
+
+.pagination li {
+    margin: 0;
+}
+
+.pagination li a,
+.pagination li span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    background-color: var(--color-dark-medium);
+    color: var(--color-light);
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.pagination li a:hover {
+    background-color: var(--color-main);
+    color: var(--color-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pagination li.active span {
+    background-color: var(--color-main);
+    color: var(--color-dark);
+    font-weight: 700;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.pagination li.disabled span {
+    background-color: var(--color-dark);
+    color: var(--color-gray);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.pagination li.disabled:hover span {
+    transform: none;
+    box-shadow: none;
+    background-color: var(--color-dark);
+}
+
 .container {
     max-width: 120rem;
     width: 90%;
