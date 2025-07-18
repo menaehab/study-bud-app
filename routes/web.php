@@ -4,6 +4,7 @@ use Livewire\Volt\Volt;
 use App\Livewire\Home\HomePage;
 use App\Livewire\Room\RoomCreate;
 use Illuminate\Support\Facades\Route;
+use App\Events\RefreshRooms;
 
 Route::get('/',HomePage::class)->name('home');
 
