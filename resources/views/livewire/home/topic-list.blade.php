@@ -5,20 +5,13 @@
      </div>
      <ul class="topics__list">
          <li>
-             <a href="/" class="active">All <span>553</span></a>
+             <a href="/" class="active">All <span>{{ $allTopicsCount }}</span></a>
          </li>
-         <li>
-             <a href="/">Python <span>232</span></a>
-         </li>
-         <li>
-             <a href="/">JavaScript <span>122</span></a>
-         </li>
-         <li>
-             <a href="/">React <span>57</span></a>
-         </li>
-         <li>
-             <a href="/">Database <span>90</span></a>
-         </li>
+         @foreach ($latestTopics as $topic)
+             <li>
+                 <a href="/">{{ $topic->name }} <span>{{ $topic->rooms->count() }}</span></a>
+             </li>
+         @endforeach
      </ul>
      <a class="btn btn--link" href="topics.html">
          More
