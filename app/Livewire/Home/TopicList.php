@@ -7,9 +7,16 @@ use Livewire\Component;
 
 class TopicList extends Component
 {
+    public $activeTopicId = null;
+
     public $listeners = [
         "echo:rooms,.refresh-rooms" => '$refresh',
     ];
+
+    public function topicFilter($id = null)
+    {
+        $this->dispatch('topicFiltered', ['id' => $id]);
+    }
 
     public function render()
     {
