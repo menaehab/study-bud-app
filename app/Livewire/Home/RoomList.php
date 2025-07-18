@@ -4,27 +4,20 @@ namespace App\Livewire\Home;
 
 use App\Models\Room;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class RoomList extends Component
 {
-    public $rooms = [];
+    use WithPagination;
 
     public $listeners = [
-        "echo:rooms,.refresh-rooms" => 'refreshRooms',
+        "echo:rooms,.refresh-rooms" => '$refresh',
     ];
-
-    public function mount()
-    {
-        $this->refreshRooms();
-    }
-
-    public function refreshRooms()
-    {
-        $this->rooms = Room::latest()->get();
-    }
 
     public function render()
     {
-        return view('livewire.home.room-list');
+        return view('livewire.home.room-list', [
+            'rooms' => Room::latest()->paginate(5),
+        ]);
     }
 }

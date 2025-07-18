@@ -75,5 +75,6 @@
             </div>
         </div>
     @endforeach
+    {{ $rooms->links('vendor.pagination.default') }}
 </div>
 <!-- Room List End -->
