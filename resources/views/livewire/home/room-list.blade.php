@@ -38,7 +38,8 @@
                 <div class="roomListRoom__header">
                     <a href="profile.html" class="roomListRoom__author">
                         <div class="avatar avatar--medium active">
-                            <img src="https://randomuser.me/api/portraits/women/11.jpg" />
+                            <img
+                                src="{{ $room->user->avatar ? asset('storage/avatars/' . $room->user->avatar) : asset('assets/avatar.svg') }}" />
                         </div>
                         <span>{{ $room->user->name }}</span>
                     </a>
