@@ -5,7 +5,7 @@ namespace App\Livewire\Room;
 use App\Models\Room;
 use App\Models\Topic;
 use Livewire\Component;
-use App\Events\RefreshRooms;
+use App\Events\RoomsRefreshed;
 
 class RoomCreate extends Component
 {
@@ -38,7 +38,7 @@ class RoomCreate extends Component
             'user_id' => auth()->user()->id,
         ]);
 
-        broadcast(new RefreshRooms())->toOthers();
+        broadcast(new RoomsRefreshed())->toOthers();
 
         $this->redirectIntended(route('home', absolute: false), navigate: true);
 
