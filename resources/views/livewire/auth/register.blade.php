@@ -23,9 +23,6 @@
                         @error('email')
                             <p class="form__error">{{ $message }}</p>
                         @enderror
-                        @error('password')
-                            <p class="form__error">{{ $message }}</p>
-                        @enderror
                     </div>
                     <div class="form__group">
                         <label for="password">Password</label>

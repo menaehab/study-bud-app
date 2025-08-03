@@ -2,6 +2,7 @@
 
 use Livewire\Volt\Volt;
 use App\Events\RefreshRooms;
+use App\Livewire\ProfilePage;
 use App\Livewire\SettingsPage;
 use App\Livewire\Home\HomePage;
 use App\Livewire\Room\RoomCreate;
@@ -14,6 +15,7 @@ Route::middleware(['auth','verified'])->group(function () {
 
     Route::get('/create-room',RoomCreate::class)->name('room.create');
     Route::get('/settings',SettingsPage::class)->name('settings');
+    Route::get('/profile/{id}',ProfilePage::class)->name('profile');
 });
 require __DIR__.'/auth.php';
 

@@ -57,8 +57,6 @@ class SettingsPage extends Component
 
             $this->avatar = $avatarName;
 
-            $this->dispatch('avatarUpdated');
-
             $this->reset('newAvatar');
 
         }
