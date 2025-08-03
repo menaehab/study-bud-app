@@ -36,7 +36,7 @@
         @foreach ($rooms as $room)
             <div wire:key="room-{{ $room->id }}" class="roomListRoom">
                 <div class="roomListRoom__header">
-                    <a href="profile.html" class="roomListRoom__author">
+                    <a href="{{ route('profile', $room->user->slug) }}" class="roomListRoom__author">
                         <div class="avatar avatar--medium active">
                             <img
                                 src="{{ $room->user->avatar ? asset('storage/avatars/' . $room->user->avatar) : asset('assets/avatar.svg') }}" />

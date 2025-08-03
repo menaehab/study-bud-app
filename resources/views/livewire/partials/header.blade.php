@@ -19,7 +19,7 @@
             @if (auth()->check())
                 <!-- Logged In -->
                 <div class="header__user">
-                    <a href="#">
+                    <a href="{{ route('profile', auth()->user()->slug) }}" wire:navigate>
                         <div class="avatar avatar--medium active">
                             <img src="{{ auth()->user()->avatar ? asset('storage/avatars/' . auth()->user()->avatar) : asset('assets/avatar.svg') }}"
                                 alt="{{ auth()->user()->name }}" class="w-full h-full object-cover rounded-full" />
