@@ -8,11 +8,11 @@ use Livewire\Component;
 class ProfilePage extends Component
 {
     public $user;
-    public $id;
-    public function mount($id)
+    public $slug;
+    public function mount($slug)
     {
-        $this->id = $id;
-        $this->user = User::findOrFail($id);
+        $this->slug = $slug;
+        $this->user = User::where('slug', $slug)->first();
     }
     public function render()
     {

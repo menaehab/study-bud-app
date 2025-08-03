@@ -8,16 +8,16 @@ use App\Livewire\Home\HomePage;
 use App\Livewire\Room\RoomCreate;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/',HomePage::class)->name('home');
+Route::get('/', HomePage::class)->name('home');
 
 
-Route::middleware(['auth','verified'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/create-room',RoomCreate::class)->name('room.create');
-    Route::get('/settings',SettingsPage::class)->name('settings');
-    Route::get('/profile/{id}',ProfilePage::class)->name('profile');
+    Route::get('/create-room', RoomCreate::class)->name('room.create');
+    Route::get('/settings', SettingsPage::class)->name('settings');
+    Route::get('/profile/{slug}', ProfilePage::class)->name('profile');
 });
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 

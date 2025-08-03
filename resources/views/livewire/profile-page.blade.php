@@ -13,7 +13,7 @@
                 </div>
                 <div class="profile__info">
                     <h3>{{ $user->name }}</h3>
-                    @if ($user->id === $id)
+                    @if ($user->slug === $slug)
                         <a href="{{ route('settings') }}" class="btn btn--main btn--pill">Edit Profile</a>
                     @endif
                 </div>
