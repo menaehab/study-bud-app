@@ -17,13 +17,16 @@ class RoomList extends Component
         'topicFiltered' => 'filterRooms',
     ];
 
-    public function filterRooms($data)
+    protected $queryString = [
+        'topicId' => ['except' => ''],
+    ];
+
+    public function filterRooms($id = null)
     {
-        $id = $data['id'] ?? null;
-
-        $this->topicId = $id;
-
-        $this->resetPage();
+        if ($this->topicId != $id) {
+            $this->topicId = $id;
+            $this->resetPage();
+        }
     }
 
     public function render()

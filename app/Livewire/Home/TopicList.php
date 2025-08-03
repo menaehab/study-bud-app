@@ -8,16 +8,16 @@ use Livewire\Component;
 class TopicList extends Component
 {
     public $activeTopicId = null;
-    
+
     protected $listeners = [
         'echo:rooms,.refresh-rooms' => '$refresh',
     ];
-    
+
     public function mount($activeTopicId = null)
     {
         $this->activeTopicId = $activeTopicId;
     }
-    
+
     public function updatedActiveTopicId($value)
     {
         $this->emit('topicFiltered', ['id' => $value]);
@@ -25,8 +25,10 @@ class TopicList extends Component
 
     public function topicFilter($id = null)
     {
-        $this->activeTopicId = $id;
-        $this->dispatch('topicFiltered', ['id' => $id]);
+        if ($this->activeTopicId != $id) {
+            $this->activeTopicId = $id;
+            $this->dispatch('topicFiltered', id: $id);
+        }
     }
 
     public function render()

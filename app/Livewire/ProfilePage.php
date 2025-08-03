@@ -10,41 +10,37 @@ use Livewire\WithPagination;
 class ProfilePage extends Component
 {
     use WithPagination;
-    
+
     public $user;
     public $slug;
     public $topicId = null;
-    
+
     protected $queryString = [
         'topicId' => ['except' => ''],
     ];
-    
+
     protected $listeners = [
         'topicFiltered' => 'filterRooms',
     ];
 
-    public function mount($slug)
+    public function mount($slug, $topicId = null)
     {
         $this->slug = $slug;
         $this->user = User::where('slug', $slug)->firstOrFail();
-        
-        // Initialize topicId from request if present
-        if (request()->has('topicId')) {
-            $this->topicId = request('topicId');
-        }
+        $this->topicId = $topicId;
     }
 
-    public function filterRooms($data)
+    public function filterRooms($id = null)
     {
-        $this->topicId = $data['id'] ?? null;
+        $this->topicId = $id;
         $this->resetPage();
     }
-    
+
     public function updatingTopicId()
     {
         $this->resetPage();
     }
-    
+
     public function render()
     {
         $query = Room::query();

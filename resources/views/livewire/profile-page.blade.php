@@ -81,7 +81,7 @@
 
         <!-- Recent Activity -->
         <div class="activities">
-            <livewire:home.recent-activity :key="'recent-activity-' . now()->timestamp" />
+            <livewire:home.recent-activity :key="'recent-activity-' . now()->format('H:i:s.u')" />
         </div>
     </div>
 </main>
