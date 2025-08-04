@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Room;
+namespace App\Livewire;
 
 use App\Models\Room;
 use App\Models\Topic;
@@ -46,6 +46,6 @@ class RoomCreate extends Component
     public function render()
     {
         $topics = Topic::all();
-        return view('livewire.room.room-create',compact('topics'));
+        return view('livewire.room-create', compact('topics'));
     }
 }

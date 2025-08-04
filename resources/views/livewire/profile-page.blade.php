@@ -1,6 +1,6 @@
 <main class="profile-page layout layout--3">
     <div class="container">
-        <livewire:home.topic-list />
+        <livewire:topic-list :activeTopicId="$topicId" :key="'topic-list-' . $topicId" />
 
         <!-- Room List Start -->
         <div class="roomList">
@@ -30,10 +30,10 @@
                     <h2>Study Rooms Hosted by {{ $user->name }}</h2>
                 </div>
             </div>
-            @foreach ($user->rooms as $room)
+            @foreach ($rooms as $room)
                 <div class="roomListRoom">
                     <div class="roomListRoom__header">
-                        <a href="profile.html" class="roomListRoom__author">
+                        <a href="{{ route('profile', $room->user->slug) }}" class="roomListRoom__author">
                             <div class="avatar avatar--medium active">
                                 <img
                                     src="{{ $room->user->avatar ? asset('storage/avatars/' . $room->user->avatar) : asset('assets/avatar.svg') }}" />
@@ -75,9 +75,13 @@
                     </div>
                 </div>
             @endforeach
+            {{ $rooms->links('vendor.pagination.default') }}
         </div>
         <!-- Room List End -->
 
-        <livewire:home.recent-activity />
+        <!-- Recent Activity -->
+        <div class="activities">
+            <livewire:recent-activity :key="'recent-activity-' . now()->format('H:i:s.u')" />
+        </div>
     </div>
 </main>

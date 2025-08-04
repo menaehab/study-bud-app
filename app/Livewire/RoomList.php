@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Home;
+namespace App\Livewire;
 
 use App\Models\Room;
 use Livewire\Component;
@@ -17,13 +17,16 @@ class RoomList extends Component
         'topicFiltered' => 'filterRooms',
     ];
 
-    public function filterRooms($data)
+    protected $queryString = [
+        'topicId' => ['except' => ''],
+    ];
+
+    public function filterRooms($id = null)
     {
-        $id = $data['id'] ?? null;
-
-        $this->topicId = $id;
-
-        $this->resetPage();
+        if ($this->topicId != $id) {
+            $this->topicId = $id;
+            $this->resetPage();
+        }
     }
 
     public function render()
@@ -34,7 +37,7 @@ class RoomList extends Component
             $query->where('topic_id', $this->topicId);
         }
 
-        return view('livewire.home.room-list', [
+        return view('livewire.room-list', [
             'rooms' => $query->latest()->paginate(5),
             'roomsCount' => $this->topicId ? $query->count() : Room::count(),
         ]);
