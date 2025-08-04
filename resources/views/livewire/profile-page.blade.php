@@ -1,6 +1,6 @@
 <main class="profile-page layout layout--3">
     <div class="container">
-        <livewire:home.topic-list :activeTopicId="$topicId" :key="'topic-list-' . $topicId" />
+        <livewire:topic-list :activeTopicId="$topicId" :key="'topic-list-' . $topicId" />
 
         <!-- Room List Start -->
         <div class="roomList">
@@ -81,7 +81,7 @@
 
         <!-- Recent Activity -->
         <div class="activities">
-            <livewire:home.recent-activity :key="'recent-activity-' . now()->format('H:i:s.u')" />
+            <livewire:recent-activity :key="'recent-activity-' . now()->format('H:i:s.u')" />
         </div>
     </div>
 </main>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Home;
+namespace App\Livewire;
 
 use App\Models\Topic;
 use Livewire\Component;
@@ -35,6 +35,6 @@ class TopicList extends Component
     {
         $latestTopics = Topic::take(5)->get();
         $allTopicsCount = Topic::count();
-        return view('livewire.home.topic-list', compact('latestTopics', 'allTopicsCount'));
+        return view('livewire.topic-list', compact('latestTopics', 'allTopicsCount'));
     }
 }

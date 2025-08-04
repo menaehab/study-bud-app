@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Home;
+namespace App\Livewire;
 
 use App\Models\Room;
 use Livewire\Component;
@@ -37,7 +37,7 @@ class RoomList extends Component
             $query->where('topic_id', $this->topicId);
         }
 
-        return view('livewire.home.room-list', [
+        return view('livewire.room-list', [
             'rooms' => $query->latest()->paginate(5),
             'roomsCount' => $this->topicId ? $query->count() : Room::count(),
         ]);
