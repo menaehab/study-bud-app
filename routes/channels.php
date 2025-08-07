@@ -11,7 +11,6 @@ Broadcast::channel('room.{roomId}', function ($user, $roomId) {
         return false;
     }
 
-
     return [
         'id' => $user->id,
         'name' => $user->name,
