@@ -19,7 +19,7 @@
                                     <span>{{ $message->created_at->diffForHumans() }}</span>
                                 </p>
                             </a>
-                            <div class="roomListRoom__actions">
+                            {{-- <div class="roomListRoom__actions">
                                 <a href="#">
                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
                                         viewBox="0 0 32 32">
@@ -29,7 +29,7 @@
                                         </path>
                                     </svg>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="activities__boxContent">
                             <p>{{ $message->message }}</p>
