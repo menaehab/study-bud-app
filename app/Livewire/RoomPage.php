@@ -6,6 +6,7 @@ use App\Models\Room;
 use App\Models\Message;
 use Livewire\Component;
 use App\Events\MessageRefreshed;
+use App\Events\RecentActivityRefreshed;
 
 class RoomPage extends Component
 {
@@ -48,6 +49,7 @@ class RoomPage extends Component
         ]);
 
         event(new MessageRefreshed($this->room->id));
+        event(new RecentActivityRefreshed());
 
         $this->message = '';
         $this->loadMessages();
