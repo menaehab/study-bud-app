@@ -4,7 +4,7 @@
             <img src="{{ asset('assets') }}/logo.svg" />
             <h1>StudyBuddy</h1>
         </a>
-        <form class="header__search">
+        {{-- <form class="header__search">
             <label>
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                     <title>search</title>
@@ -14,7 +14,7 @@
                 </svg>
                 <input placeholder="Search for posts" />
             </label>
-        </form>
+        </form> --}}
         <nav class="header__menu" x-data="{ open: false }" @click.away="open = false">
             @if (auth()->check())
                 <!-- Logged In -->
