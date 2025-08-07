@@ -215,9 +215,9 @@ a {
     /* border: 0.3rem solid var(--color-dark); */
 }
 
-.avatar.active::after {
-    /* background-color: var(--color-success); */
-}
+/* .avatar.active::after {
+    background-color: var(--color-success);
+} */
 
 .avatar.avatar--small img {
     width: 2.8rem;
