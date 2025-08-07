@@ -6,7 +6,7 @@
     <ul class="topics__list">
         <li>
             <a href="#" class="{{ $activeTopicId == null ? 'active' : '' }}" wire:click.prevent="topicFilter()">All
-                <span>{{ $allTopicsCount }}</span>
+                <span>{{ $allRoomsCount }}</span>
             </a>
         </li>
         @foreach ($latestTopics as $topic)

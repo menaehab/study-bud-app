@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Room;
 use App\Models\Topic;
 use Livewire\Component;
 
@@ -34,7 +35,7 @@ class TopicList extends Component
     public function render()
     {
         $latestTopics = Topic::take(5)->get();
-        $allTopicsCount = Topic::count();
-        return view('livewire.topic-list', compact('latestTopics', 'allTopicsCount'));
+        $allRoomsCount = Room::count();
+        return view('livewire.topic-list', compact('latestTopics', 'allRoomsCount'));
     }
 }
